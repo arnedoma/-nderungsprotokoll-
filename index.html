@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Änderungsprotokoll - Pflegeheim "Haus Sonnenschein"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); /* Green header for change protocol */
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 5px solid #27ae60; /* Green border */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #27ae60; /* Green heading */
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #2ecc71; /* Green border bottom */
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="date"],
+        .input-group input[type="time"],
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #2ecc71; /* Green focus border */
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-group div {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #d2f7e0 0%, #a8e6cf 100%); /* Light green background */
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #28a745; /* Darker green left border */
+        }
+
+        .section-header h3 {
+            color: #218838; /* Even darker green */
+            font-size: 1.4em;
+        }
+
+        .note {
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%); /* Light yellow */
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #f59e0b; /* Orange left border */
+            color: #78350f; /* Dark brown text */
+            font-weight: bold;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .btn-submit, .btn-clear {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); /* Green submit button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-clear {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); /* Red clear button */
+        }
+
+        .btn-submit:hover, .btn-clear:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Änderungsprotokoll Mahlzeitenversorgung</h1>
+            <p>Wichtige Mitteilungen an Küche und Verwaltung</p>
+        </div>
+
+        <div class="card">
+            <h2>👤 Bewohnerinformationen</h2>
+            <div class="input-group">
+                <label for="residentName">Name des Bewohners:</label>
+                <input type="text" id="residentName" placeholder="Max Mustermann" required>
+            </div>
+            <div class="input-group">
+                <label for="roomNumber">Zimmernummer:</label>
+                <input type="text" id="roomNumber" placeholder="z.B. 101" required>
+            </div>
+            <div class="input-group">
+                <label for="reportDate">Datum der Meldung:</label>
+                <input type="date" id="reportDate" value="" required>
+            </div>
+            <div class="input-group">
+                <label for="reporterName">Gemeldet von (Name Pflegekraft):</label>
+                <input type="text" id="reporterName" placeholder="Petra Müller" required>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Art der Änderung</h2>
+            <div class="checkbox-group">
+                <div><input type="checkbox" id="changeNewAdmission" name="changeType" value="Neueinzug"><label for="changeNewAdmission">Neueinzug</label></div>
+                <div><input type="checkbox" id="changeHospitalOut" name="changeType" value="Krankenhausverlegung"><label for="changeHospitalOut">Verlegung ins Krankenhaus</label></div>
+                <div><input type="checkbox" id="changeHospitalIn" name="changeType" value="RueckkehrKrankenhaus"><label for="changeHospitalIn">Rückkehr aus Krankenhaus</label></div>
+                <div><input type="checkbox" id="changeDietForm" name="changeType" value="KostformAenderung"><label for="changeDietForm">Kostformänderung</label></div>
+                <div><input type="checkbox" id="changeNPO" name="changeType" value="Nuechtern"><label for="changeNPO">Nüchternheit (NPO)</label></div>
+                <div><input type="checkbox" id="changeBreakfastWish" name="changeType" value="Fruehstueckswunsch"><label for="changeBreakfastWish">Frühstückswunsch</label></div>
+                <div><input type="checkbox" id="changeOther" name="changeType" value="Sonstiges"><label for="changeOther">Sonstiges</label></div>
+            </div>
+        </div>
+
+        <div class="card" id="detailsNewAdmission" style="display:none;">
+            <div class="section-header">
+                <h3>🏠 Details Neueinzug</h3>
+            </div>
+            <div class="input-group">
+                <label for="admissionDate">Einzugsdatum:</label>
+                <input type="date" id="admissionDate">
+            </div>
+            <div class="input-group">
+                <label for="admissionTime">Einzugszeit:</label>
+                <input type="time" id="admissionTime">
+            </div>
+            <div class="input-group">
+                <label for="admissionDiet">Erst-Kostform:</label>
+                <select id="admissionDiet">
+                    <option value="">Bitte wählen</option>
+                    <option value="Vollkost">Vollkost</option>
+                    <option value="Leichte Vollkost">Leichte Vollkost</option>
+                    <option value="Vegetarisch">Vegetarisch</option>
+                    <option value="Diabetiker Kost">Diabetiker Kost</option>
+                    <option value="Passierte Kost">Passierte Kost (IDDSI 4)</option>
+                    <option value="Pürierte Kost">Pürierte Kost (IDDSI 4)</option>
+                    <option value="Breikost">Breikost (IDDSI 4)</option>
+                    <option value="Weiche Kost">Weiche Kost (IDDSI 5)</option>
+                    <option value="Feingeschnittene Kost">Feingeschnittene Kost (IDDSI 6)</option>
+                    <option value="Glutenfrei">Glutenfrei</option>
+                    <option value="Laktosefrei">Laktosefrei</option>
+                    <option value="Andere">Andere (bitte in 'Bemerkungen' angeben)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="admissionNotes">Besondere Hinweise/Allergien (für Küche):</label>
+                <textarea id="admissionNotes" rows="3" placeholder="z.B. keine Nüsse, Laktoseintoleranz, bevorzugt Süßes"></textarea>
+            </div>
+        </div>
+
+        <div class="card" id="detailsHospital" style="display:none;">
+            <div class="section-header">
+                <h3>🏥 Details Krankenhausverlegung / Rückkehr</h3>
+            </div>
+            <div class="input-group">
+                <label for="hospitalDate">Datum der Verlegung/Rückkehr:</label>
+                <input type="date" id="hospitalDate">
+            </div>
+            <div class="input-group">
+                <label for="hospitalTime">Uhrzeit der Verlegung/Rückkehr:</label>
+                <input type="time" id="hospitalTime">
+            </div>
+            <div class="input-group">
+                <label for="hospitalStatus">Status:</label>
+                <select id="hospitalStatus">
+                    <option value="">Bitte wählen</option>
+                    <option value="verlegt">Verlegt ins Krankenhaus</option>
+                    <option value="zurueck">Aus Krankenhaus zurück</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="hospitalDiet">Kostform bei Rückkehr/Verlegung (falls bekannt):</label>
+                <select id="hospitalDiet">
+                    <option value="">Bitte wählen</option>
+                    <option value="Vollkost">Vollkost</option>
+                    <option value="Leichte Vollkost">Leichte Vollkost</option>
+                    <option value="Vegetarisch">Vegetarisch</option>
+                    <option value="Diabetiker Kost">Diabetiker Kost</option>
+                    <option value="Passierte Kost">Passierte Kost (IDDSI 4)</option>
+                    <option value="Pürierte Kost">Pürierte Kost (IDDSI 4)</option>
+                    <option value="Breikost">Breikost (IDDSI 4)</option>
+                    <option value="Weiche Kost">Weiche Kost (IDDSI 5)</option>
+                    <option value="Feingeschnittene Kost">Feingeschnittene Kost (IDDSI 6)</option>
+                    <option value="Glutenfrei">Glutenfrei</option>
+                    <option value="Laktosefrei">Laktosefrei</option>
+                    <option value="Nuechtern">Nüchtern (NPO)</option>
+                    <option value="Andere">Andere (bitte in 'Bemerkungen' angeben)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="hospitalNotes">Anmerkungen (z.B. Gründe, Medikation, Flüssigkeitsgabe):</label>
+                <textarea id="hospitalNotes" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="card" id="detailsDietForm" style="display:none;">
+            <div class="section-header">
+                <h3>🍽️ Details Kostformänderung</h3>
+            </div>
+            <div class="input-group">
+                <label for="dietChangeDate">Gültig ab Datum:</label>
+                <input type="date" id="dietChangeDate">
+            </div>
+            <div class="input-group">
+                <label for="dietChangeTime">Gültig ab Uhrzeit (ca.):</label>
+                <input type="time" id="dietChangeTime">
+            </div>
+            <div class="input-group">
+                <label for="currentDiet">Bisherige Kostform:</label>
+                <select id="currentDiet">
+                    <option value="">Bitte wählen</option>
+                    <option value="Vollkost">Vollkost</option>
+                    <option value="Leichte Vollkost">Leichte Vollkost</option>
+                    <option value="Vegetarisch">Vegetarisch</option>
+                    <option value="Diabetiker Kost">Diabetiker Kost</option>
+                    <option value="Passierte Kost">Passierte Kost (IDDSI 4)</option>
+                    <option value="Pürierte Kost">Pürierte Kost (IDDSI 4)</option>
+                    <option value="Breikost">Breikost (IDDSI 4)</option>
+                    <option value="Weiche Kost">Weiche Kost (IDDSI 5)</option>
+                    <option value="Feingeschnittene Kost">Feingeschnittene Kost (IDDSI 6)</option>
+                    <option value="Glutenfrei">Glutenfrei</option>
+                    <option value="Laktosefrei">Laktosefrei</option>
+                    <option value="Andere">Andere</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="newDiet">Neue Kostform:</label>
+                <select id="newDiet">
+                    <option value="">Bitte wählen</option>
+                    <option value="Vollkost">Vollkost</option>
+                    <option value="Leichte Vollkost">Leichte Vollkost</option>
+                    <option value="Vegetarisch">Vegetarisch</option>
+                    <option value="Diabetiker Kost">Diabetiker Kost</option>
+                    <option value="Passierte Kost">Passierte Kost (IDDSI 4)</option>
+                    <option value="Pürierte Kost">Pürierte Kost (IDDSI 4)</option>
+                    <option value="Breikost">Breikost (IDDSI 4)</option>
+                    <option value="Weiche Kost">Weiche Kost (IDDSI 5)</option>
+                    <option value="Feingeschnittene Kost">Feingeschnittene Kost (IDDSI 6)</option>
+                    <option value="Glutenfrei">Glutenfrei</option>
+                    <option value="Laktosefrei">Laktosefrei</option>
+                    <option value="Andere">Andere (bitte in 'Bemerkungen' angeben)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="dietChangeReason">Grund der Änderung:</label>
+                <textarea id="dietChangeReason" rows="2" placeholder="z.B. Verschlechterung Schluckfunktion, Gewichtsabnahme, ärztliche Anordnung"></textarea>
+            </div>
+        </div>
+
+        <div class="card" id="detailsNPO" style="display:none;">
+            <div class="section-header">
+                <h3>🚫 Details Nüchternheit (NPO - Nil Per Os)</h3>
+            </div>
+            <div class="input-group">
+                <label for="npoStartDate">Nüchtern ab Datum:</label>
+                <input type="date" id="npoStartDate">
+            </div>
+            <div class="input-group">
+                <label for="npoStartTime">Nüchtern ab Uhrzeit:</label>
+                <input type="time" id="npoStartTime">
+            </div>
+            <div class="input-group">
+                <label for="npoExpectedEnd">Voraussichtliches Ende der Nüchternheit (Datum/Uhrzeit):</label>
+                <input type="datetime-local" id="npoExpectedEnd">
+            </div>
+            <div class="input-group">
+                <label for="npoReason">Grund der Nüchternheit:</label>
+                <textarea id="npoReason" rows="2" placeholder="z.B. vor OP, Untersuchung, Aspirationsgefahr"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="npoNotes">Anmerkungen (z.B. erlaubt Schluck Wasser, Infusionen):</label>
+                <textarea id="npoNotes" rows="2"></textarea>
+            </div>
+        </div>
+
+        <div class="card" id="detailsBreakfastWish" style="display:none;">
+            <div class="section-header">
+                <h3>🍞 Details Frühstückswunsch</h3>
+            </div>
+            <div class="input-group">
+                <label for="breakfastWishDate">Gültig ab Datum:</label>
+                <input type="date" id="breakfastWishDate">
+            </div>
+            <div class="input-group">
+                <label for="breakfastWishTime">Gültig ab Uhrzeit (falls relevant):</label>
+                <input type="time" id="breakfastWishTime">
+            </div>
+            <div class="input-group">
+                <label for="breakfastItems">Spezifische Wünsche (bitte ankreuzen):</label>
+                <div class="checkbox-group">
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Brot"><label>Mehr Brot</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Weniger Brot"><label>Weniger Brot</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Spezielle Brotsorte"><label>Spezielle Brotsorte (z.B. Roggenbrot)</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Käse"><label>Mehr Käse</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Wurst"><label>Mehr Wurst</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Marmelade"><label>Mehr Marmelade</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Honig"><label>Mehr Honig</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Joghurt"><label>Mehr Joghurt</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Quark"><label>Mehr Quark</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Obst"><label>Mehr Obst</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Ei (gekocht)"><label>Ei (gekocht)</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Rührei"><label>Rührei</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Weniger Kaffee"><label>Weniger Kaffee</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Mehr Kaffee"><label>Mehr Kaffee</label></div>
+                    <div><input type="checkbox" name="breakfastItem" value="Anderes Getränk"><label>Anderes Getränk (z.B. Kakao, Milch)</label></div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="breakfastNotes">Weitere Details zu Wünschen:</label>
+                <textarea id="breakfastNotes" rows="2" placeholder="z.B. 'nur bestimmte Käsesorte', 'Kakao statt Kaffee'"></textarea>
+            </div>
+        </div>
+
+        <div class="card" id="detailsOther" style="display:none;">
+            <div class="section-header">
+                <h3>📝 Details Sonstiges</h3>
+            </div>
+            <div class="input-group">
+                <label for="otherDate">Datum der Änderung:</label>
+                <input type="date" id="otherDate">
+            </div>
+            <div class="input-group">
+                <label for="otherTime">Uhrzeit der Änderung:</label>
+                <input type="time" id="otherTime">
+            </div>
+            <div class="input-group">
+                <label for="otherDescription">Beschreibung der sonstigen Änderung:</label>
+                <textarea id="otherDescription" rows="4" placeholder="Bitte hier die genaue Änderung beschreiben."></textarea>
+            </div>
+        </div>
+
+        <div class="note">
+            <p><strong>Wichtiger Hinweis:</strong> Dieses Protokoll dient der schnellen und klaren Kommunikation. Bitte füllen Sie es sorgfältig aus und leiten Sie es umgehend an die betreffenden Abteilungen (Küche, ggf. Verwaltung) weiter.</p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-submit" onclick="generateProtocolText()">✅ Protokoll generieren & senden</button>
+            <button class="btn-clear" onclick="clearForm()">🔄 Formular leeren</button>
+        </div>
+
+        <div class="footer">
+            <p><strong>Erstellt von:</strong> Arne Domachofski | <strong>Fachliche Qualifikation:</strong> Koch und Diättisch geschulter Koch</p>
+            <p><strong>Datum:</strong> 05. Juli 2025</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current date for reportDate
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            document.getElementById('reportDate').value = `${year}-${month}-${day}`;
+
+            // Add event listeners for checkboxes to show/hide sections
+            const changeTypeCheckboxes = document.querySelectorAll('input[name="changeType"]');
+            const sections = {
+                'Neueinzug': 'detailsNewAdmission',
+                'Krankenhausverlegung': 'detailsHospital',
+                'RueckkehrKrankenhaus': 'detailsHospital',
+                'KostformAenderung': 'detailsDietForm',
+                'Nuechtern': 'detailsNPO',
+                'Fruehstueckswunsch': 'detailsBreakfastWish',
+                'Sonstiges': 'detailsOther'
+            };
+
+            changeTypeCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    // Hide all detail sections first
+                    for (const key in sections) {
+                        document.getElementById(sections[key]).style.display = 'none';
+                    }
+
+                    // Show selected sections
+                    changeTypeCheckboxes.forEach(cb => {
+                        if (cb.checked) {
+                            const sectionId = sections[cb.value];
+                            if (sectionId) {
+                                document.getElementById(sectionId).style.display = 'block';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Populate current date for relevant date fields
+            document.getElementById('admissionDate').value = `${year}-${month}-${day}`;
+            document.getElementById('hospitalDate').value = `${year}-${month}-${day}`;
+            document.getElementById('dietChangeDate').value = `${year}-${month}-${day}`;
+            document.getElementById('npoStartDate').value = `${year}-${month}-${day}`;
+            document.getElementById('breakfastWishDate').value = `${year}-${month}-${day}`;
+            document.getElementById('otherDate').value = `${year}-${month}-${day}`;
+
+            // Populate current time for relevant time fields
+            const currentTime = today.toTimeString().slice(0, 5); // HH:MM
+            document.getElementById('admissionTime').value = currentTime;
+            document.getElementById('hospitalTime').value = currentTime;
+            document.getElementById('dietChangeTime').value = currentTime;
+            document.getElementById('npoStartTime').value = currentTime;
+            document.getElementById('breakfastWishTime').value = currentTime;
+            document.getElementById('otherTime').value = currentTime;
+            document.getElementById('npoExpectedEnd').value = `${year}-${month}-${day}T${currentTime}`;
+        });
+
+        function generateProtocolText() {
+            const residentName = document.getElementById('residentName').value;
+            const roomNumber = document.getElementById('roomNumber').value;
+            const reportDate = document.getElementById('reportDate').value;
+            const reporterName = document.getElementById('reporterName').value;
+
+            if (!residentName || !roomNumber || !reportDate || !reporterName) {
+                alert('Bitte füllen Sie die Bewohnerinformationen vollständig aus.');
+                return;
+            }
+
+            let protocolContent = `
+ÄNDERUNGSPROTOKOLL MAHLZEITENVERSORGUNG - PFLEGEHEIM "HAUS SONNENSCHEIN"
+Datum der Meldung: ${reportDate}
+
+--------------------------------------------------------------------------------
+
+👤 BEWOHNERINFORMATIONEN
+
+Name des Bewohners: ${residentName}
+Zimmernummer: ${roomNumber}
+Gemeldet von: ${reporterName}
+
+--------------------------------------------------------------------------------
+
+📋 ART DER ÄNDERUNG UND DETAILS
+
+`;
+
+            const selectedChangeTypes = Array.from(document.querySelectorAll('input[name="changeType"]:checked'))
+                                            .map(cb => cb.value);
+
+            if (selectedChangeTypes.length === 0) {
+                alert('Bitte wählen Sie mindestens eine Art der Änderung aus.');
+                return;
+            }
+
+            selectedChangeTypes.forEach(type => {
+                switch (type) {
+                    case 'Neueinzug':
+                        const admissionDate = document.getElementById('admissionDate').value;
+                        const admissionTime = document.getElementById('admissionTime').value;
+                        const admissionDiet = document.getElementById('admissionDiet').value;
+                        const admissionNotes = document.getElementById('admissionNotes').value;
+                        protocolContent += `
+**🏠 NEUEINZUG**
+Einzugsdatum: ${admissionDate}
+Einzugszeit: ${admissionTime}
+Erst-Kostform: ${admissionDiet || 'Nicht angegeben'}
+Besondere Hinweise/Allergien: ${admissionNotes || 'Keine'}
+`;
+                        break;
+                    case 'Krankenhausverlegung': // Shares section with Rückkehr
+                    case 'RueckkehrKrankenhaus':
+                        const hospitalDate = document.getElementById('hospitalDate').value;
+                        const hospitalTime = document.getElementById('hospitalTime').value;
+                        const hospitalStatus = document.getElementById('hospitalStatus').value;
+                        const hospitalDiet = document.getElementById('hospitalDiet').value;
+                        const hospitalNotes = document.getElementById('hospitalNotes').value;
+
+                        let statusText = '';
+                        if (hospitalStatus === 'verlegt') statusText = 'Verlegung ins Krankenhaus';
+                        else if (hospitalStatus === 'zurueck') statusText = 'Rückkehr aus Krankenhaus';
+
+                        protocolContent += `
+**🏥 KRANKENHAUSVERLEGUNG / RÜCKKEHR**
+Status: ${statusText || 'Nicht angegeben'}
+Datum: ${hospitalDate}
+Uhrzeit: ${hospitalTime}
+Kostform (bei Rückkehr/Verlegung): ${hospitalDiet || 'Nicht angegeben'}
+Anmerkungen: ${hospitalNotes || 'Keine'}
+`;
+                        break;
+                    case 'KostformAenderung':
+                        const dietChangeDate = document.getElementById('dietChangeDate').value;
+                        const dietChangeTime = document.getElementById('dietChangeTime').value;
+                        const currentDiet = document.getElementById('currentDiet').value;
+                        const newDiet = document.getElementById('newDiet').value;
+                        const dietChangeReason = document.getElementById('dietChangeReason').value;
+                        protocolContent += `
+**🍽️ KOSTFORMÄNDERUNG**
+Gültig ab Datum: ${dietChangeDate}
+Gültig ab Uhrzeit: ${dietChangeTime}
+Bisherige Kostform: ${currentDiet || 'Nicht angegeben'}
+Neue Kostform: ${newDiet || 'Nicht angegeben'}
+Grund der Änderung: ${dietChangeReason || 'Nicht angegeben'}
+`;
+                        break;
+                    case 'Nuechtern':
+                        const npoStartDate = document.getElementById('npoStartDate').value;
+                        const npoStartTime = document.getElementById('npoStartTime').value;
+                        const npoExpectedEnd = document.getElementById('npoExpectedEnd').value;
+                        const npoReason = document.getElementById('npoReason').value;
+                        const npoNotes = document.getElementById('npoNotes').value;
+                        protocolContent += `
+**🚫 NÜCHTERNHEIT (NPO)**
+Nüchtern ab Datum: ${npoStartDate}
+Nüchtern ab Uhrzeit: ${npoStartTime}
+Voraussichtliches Ende: ${npoExpectedEnd ? new Date(npoExpectedEnd).toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' }) : 'Nicht angegeben'}
+Grund der Nüchternheit: ${npoReason || 'Nicht angegeben'}
+Anmerkungen: ${npoNotes || 'Keine'}
+`;
+                        break;
+                    case 'Fruehstueckswunsch':
+                        const breakfastWishDate = document.getElementById('breakfastWishDate').value;
+                        const breakfastWishTime = document.getElementById('breakfastWishTime').value;
+                        const selectedBreakfastItems = Array.from(document.querySelectorAll('input[name="breakfastItem"]:checked'))
+                                                            .map(cb => cb.value)
+                                                            .join(', ');
+                        const breakfastNotes = document.getElementById('breakfastNotes').value;
+                        protocolContent += `
+**🍞 FRÜHSTÜCKSTWUNSCH**
+Gültig ab Datum: ${breakfastWishDate}
+Gültig ab Uhrzeit: ${breakfastWishTime || 'Nicht relevant'}
+Spezifische Wünsche: ${selectedBreakfastItems || 'Keine spezifischen Wünsche angekreuzt.'}
+Weitere Details: ${breakfastNotes || 'Keine'}
+`;
+                        break;
+                    case 'Sonstiges':
+                        const otherDate = document.getElementById('otherDate').value;
+                        const otherTime = document.getElementById('otherTime').value;
+                        const otherDescription = document.getElementById('otherDescription').value;
+                        protocolContent += `
+**📝 SONSTIGES**
+Datum der Änderung: ${otherDate}
+Uhrzeit der Änderung: ${otherTime}
+Beschreibung: ${otherDescription || 'Keine Beschreibung angegeben.'}
+`;
+                        break;
+                }
+                protocolContent += `\n--------------------------------------------------------------------------------\n`;
+            });
+
+            const BOM = '\uFEFF';
+            const finalProtocolText = BOM + protocolContent;
+
+            const filename = `Aenderungsprotokoll_${residentName.replace(/\s/g, '_')}_${reportDate}.txt`;
+            const dataUri = 'data:text/plain;charset=utf-8,' + encodeURIComponent(finalProtocolText);
+
+            const link = document.createElement('a');
+            link.href = dataUri;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            alert(`Änderungsprotokoll für ${residentName} wurde als "${filename}" generiert.`);
+        }
+
+        function clearForm() {
+            document.getElementById('residentName').value = '';
+            document.getElementById('roomNumber').value = '';
+            document.getElementById('reporterName').value = '';
+            
+            // Reset reportDate to current date
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            document.getElementById('reportDate').value = `${year}-${month}-${day}`;
+
+            document.querySelectorAll('input[name="changeType"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Hide all detail sections
+            document.getElementById('detailsNewAdmission').style.display = 'none';
+            document.getElementById('detailsHospital').style.display = 'none';
+            document.getElementById('detailsDietForm').style.display = 'none';
+            document.getElementById('detailsNPO').style.display = 'none';
+            document.getElementById('detailsBreakfastWish').style.display = 'none';
+            document.getElementById('detailsOther').style.display = 'none';
+
+            // Clear all specific fields
+            document.getElementById('admissionDate').value = '';
+            document.getElementById('admissionTime').value = '';
+            document.getElementById('admissionDiet').value = '';
+            document.getElementById('admissionNotes').value = '';
+
+            document.getElementById('hospitalDate').value = '';
+            document.getElementById('hospitalTime').value = '';
+            document.getElementById('hospitalStatus').value = '';
+            document.getElementById('hospitalDiet').value = '';
+            document.getElementById('hospitalNotes').value = '';
+
+            document.getElementById('dietChangeDate').value = '';
+            document.getElementById('dietChangeTime').value = '';
+            document.getElementById('currentDiet').value = '';
+            document.getElementById('newDiet').value = '';
+            document.getElementById('dietChangeReason').value = '';
+
+            document.getElementById('npoStartDate').value = '';
+            document.getElementById('npoStartTime').value = '';
+            document.getElementById('npoExpectedEnd').value = '';
+            document.getElementById('npoReason').value = '';
+            document.getElementById('npoNotes').value = '';
+
+            document.getElementById('breakfastWishDate').value = '';
+            document.getElementById('breakfastWishTime').value = '';
+            document.querySelectorAll('input[name="breakfastItem"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            document.getElementById('breakfastNotes').value = '';
+
+            document.getElementById('otherDate').value = '';
+            document.getElementById('otherTime').value = '';
+            document.getElementById('otherDescription').value = '';
+
+            // Re-populate current dates and times for new entries
+            const currentToday = new Date();
+            const currentYear = currentToday.getFullYear();
+            const currentMonth = String(currentToday.getMonth() + 1).padStart(2, '0');
+            const currentDay = String(currentToday.getDate()).padStart(2, '0');
+            const currentTime = currentToday.toTimeString().slice(0, 5);
+
+            document.getElementById('admissionDate').value = `${currentYear}-${currentMonth}-${currentDay}`;
+            document.getElementById('hospitalDate').value = `${currentYear}-${currentMonth}-${currentDay}`;
+            document.getElementById('dietChangeDate').value = `${currentYear}-${currentMonth}-${currentDay}`;
+            document.getElementById('npoStartDate').value = `${currentYear}-${currentMonth}-${currentDay}`;
+            document.getElementById('breakfastWishDate').value = `${currentYear}-${currentMonth}-${currentDay}`;
+            document.getElementById('otherDate').value = `${currentYear}-${currentMonth}-${currentDay}`;
+
+            document.getElementById('admissionTime').value = currentTime;
+            document.getElementById('hospitalTime').value = currentTime;
+            document.getElementById('dietChangeTime').value = currentTime;
+            document.getElementById('npoStartTime').value = currentTime;
+            document.getElementById('breakfastWishTime').value = currentTime;
+            document.getElementById('otherTime').value = currentTime;
+            document.getElementById('npoExpectedEnd').value = `${currentYear}-${currentMonth}-${currentDay}T${currentTime}`;
+        }
+    </script>
+</body>
+</html>
+
