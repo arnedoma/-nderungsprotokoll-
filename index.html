@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Änderungsprotokoll - Pflegeheim "Haus Sonnenschein" (Druckversion)</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0; /* Light background for screen, but will be white on print */
+        }
+
+        .page {
+            width: 210mm; /* A4 width */
+            min-height: 297mm; /* A4 height */
+            margin: 10mm auto; /* Margins for the page */
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20mm; /* Inner padding for content */
+            box-sizing: border-box;
+            page-break-after: always; /* Ensure each .page starts on a new page if you add more */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20mm; /* Increased margin for print */
+            border-bottom: 2px solid #27ae60; /* Green line */
+            padding-bottom: 5mm;
+        }
+
+        .header h1 {
+            font-size: 24pt; /* Larger for print */
+            color: #27ae60; /* Green */
+            margin-bottom: 2mm;
+        }
+
+        .header p {
+            font-size: 11pt;
+            color: #555;
+        }
+
+        .section {
+            margin-bottom: 15mm;
+            border: 1px solid #ddd;
+            padding: 10mm;
+            border-radius: 5px;
+        }
+
+        .section h2 {
+            font-size: 14pt;
+            color: #2c3e50;
+            margin-bottom: 8mm;
+            border-bottom: 1px dashed #bbb;
+            padding-bottom: 3mm;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 5mm;
+        }
+
+        .field-row label {
+            font-weight: bold;
+            flex-basis: 70mm; /* Fixed width for labels */
+            flex-shrink: 0;
+            font-size: 10pt;
+            color: #34495e;
+        }
+
+        .field-row .input-line {
+            flex-grow: 1;
+            border-bottom: 1px solid #000; /* Underline for writing */
+            min-height: 5mm; /* Space for writing */
+            padding: 0 2mm;
+            font-size: 10pt;
+        }
+
+        .checkbox-group {
+            display: grid; /* Use grid for better alignment */
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 5mm 10mm; /* Row and column gap */
+            margin-top: 5mm;
+            margin-bottom: 5mm;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            font-size: 10pt;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 5mm; /* Space between checkbox and label */
+            width: 4mm; /* Size of checkbox */
+            height: 4mm;
+            border: 1px solid #000;
+        }
+
+        textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            min-height: 20mm;
+            padding: 5mm;
+            font-size: 10pt;
+            box-sizing: border-box;
+            line-height: 1.5;
+            margin-top: 2mm; /* Space after label */
+        }
+
+        .note {
+            background: #fef3c7; /* Light yellow background */
+            padding: 8mm;
+            border-left: 5px solid #f59e0b; /* Orange border */
+            font-size: 9pt;
+            color: #78350f;
+            margin-top: 15mm;
+            border-radius: 3px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20mm;
+            font-size: 9pt;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 5mm;
+        }
+
+        /* Print-specific styles */
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+            /* Hide elements not needed for print */
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1>ÄNDERUNGSPROTOKOLL MAHlzeitenversorgung</h1>
+            <p>Pflegeheim "Haus Sonnenschein"</p>
+            <p>Wichtige Mitteilung an Küche und Verwaltung</p>
+        </div>
+
+        <div class="section">
+            <h2>👤 Bewohnerinformationen</h2>
+            <div class="field-row">
+                <label>Name des Bewohners:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Zimmernummer:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Datum der Meldung:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Gemeldet von (Pflegekraft):</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Art der Änderung (Bitte ankreuzen)</h2>
+            <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox"> Neueinzug</div>
+                <div class="checkbox-item"><input type="checkbox"> Verlegung ins Krankenhaus</div>
+                <div class="checkbox-item"><input type="checkbox"> Rückkehr aus Krankenhaus</div>
+                <div class="checkbox-item"><input type="checkbox"> Kostformänderung</div>
+                <div class="checkbox-item"><input type="checkbox"> Nüchternheit (NPO)</div>
+                <div class="checkbox-item"><input type="checkbox"> Frühstückswunsch</div>
+                <div class="checkbox-item"><input type="checkbox"> Sonstiges</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Details zur Änderung</h2>
+
+            <h3>🏠 Neueinzug</h3>
+            <div class="field-row">
+                <label>Einzugsdatum:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Einzugszeit:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Erst-Kostform:</label>
+                <div class="input-line"></div>
+            </div>
+            <label>Besondere Hinweise/Allergien (für Küche):</label>
+            <textarea rows="3"></textarea>
+
+            <h3>🏥 Krankenhausverlegung / Rückkehr</h3>
+            <div class="field-row">
+                <label>Datum der Verlegung/Rückkehr:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Uhrzeit der Verlegung/Rückkehr:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Status:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Kostform bei Rückkehr/Verlegung:</label>
+                <div class="input-line"></div>
+            </div>
+            <label>Anmerkungen (z.B. Gründe, Medikation, Flüssigkeitsgabe):</label>
+            <textarea rows="3"></textarea>
+
+            <h3>🍽️ Kostformänderung</h3>
+            <div class="field-row">
+                <label>Gültig ab Datum:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Gültig ab Uhrzeit (ca.):</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Bisherige Kostform:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Neue Kostform:</label>
+                <div class="input-line"></div>
+            </div>
+            <label>Grund der Änderung:</label>
+            <textarea rows="2"></textarea>
+
+            <h3>🚫 Nüchternheit (NPO - Nil Per Os)</h3>
+            <div class="field-row">
+                <label>Nüchtern ab Datum:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Nüchtern ab Uhrzeit:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Voraussichtliches Ende:</label>
+                <div class="input-line"></div>
+            </div>
+            <label>Grund der Nüchternheit:</label>
+            <textarea rows="2"></textarea>
+            <label>Anmerkungen (z.B. erlaubt Schluck Wasser, Infusionen):</label>
+            <textarea rows="2"></textarea>
+
+            <h3>🍞 Frühstückswunsch</h3>
+            <div class="field-row">
+                <label>Gültig ab Datum:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Gültig ab Uhrzeit (falls relevant):</label>
+                <div class="input-line"></div>
+            </div>
+            <label>Spezifische Wünsche (bitte ankreuzen):</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox"> Mehr Brot</div>
+                <div class="checkbox-item"><input type="checkbox"> Weniger Brot</div>
+                <div class="checkbox-item"><input type="checkbox"> Spezielle Brotsorte</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Käse</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Wurst</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Marmelade</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Honig</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Joghurt</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Quark</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Obst</div>
+                <div class="checkbox-item"><input type="checkbox"> Ei (gekocht)</div>
+                <div class="checkbox-item"><input type="checkbox"> Rührei</div>
+                <div class="checkbox-item"><input type="checkbox"> Weniger Kaffee</div>
+                <div class="checkbox-item"><input type="checkbox"> Mehr Kaffee</div>
+                <div class="checkbox-item"><input type="checkbox"> Anderes Getränk</div>
+            </div>
+            <label>Weitere Details zu Wünschen:</label>
+            <textarea rows="2"></textarea>
+
+            <h3>📝 Sonstiges</h3>
+            <div class="field-row">
+                <label>Datum der Änderung:</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-row">
+                <label>Uhrzeit der Änderung:</label>
+                <div class="input-line"></div>
+            </div>
+            <label>Beschreibung der sonstigen Änderung:</label>
+            <textarea rows="4"></textarea>
+
+        </div>
+
+        <div class="note">
+            <p><strong>Wichtiger Hinweis:</strong> Dieses Protokoll dient der schnellen und klaren Kommunikation. Bitte füllen Sie es sorgfältig aus und leiten Sie es umgehend an die betreffenden Abteilungen (Küche, ggf. Verwaltung) weiter.</p>
+        </div>
+
+        <div class="footer">
+            <p>Erstellt von: Arne Domachofski | Fachliche Qualifikation: Koch und Diättisch geschulter Koch</p>
+            <p>Datum: 05. Juli 2025</p>
+        </div>
+    </div>
+</body>
+</html>
